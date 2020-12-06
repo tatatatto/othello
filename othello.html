@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" charset="utf-8">
+<html>
+<head>
+<title>動物バトル</title>
+<link rel="stylesheet" href="othello.css">
+</style>
+
+</head>
+
+<body>
+<p id="day-and-night">昼</p>
+<p id="hp_1"></p>
+<ul>
+  <li id="hand1-1"></li>
+  <li id="hand1-2"></li>
+  <li id="hand1-3"></li>
+  <li id="hand1-4"></li>
+</ul>
+<p id="hp_2"></p>
+<ul>
+  <li id="hand2-1"></li>
+  <li id="hand2-2"></li>
+  <li id="hand2-3"></li>
+  <li id="hand2-4"></li>
+</ul>
+<!- 盤面 ->
+<table id="field"></table>
+<!- ターンの表示 ->
+<p id="view_tarn"></p>
+<!- 初期化ボタン ->
+<button type="button" id="ban_init" onclick="ban_init()">やり直し</button>
+<script src="othello.js"></script>
+</body>
+</html>
