@@ -231,6 +231,20 @@ var deck_2_data = [character002,character002,character003,character003,character
 var deck_1 = deck_1_data;
 var deck_2 = deck_2_data;
 
+window.onload = function(){
+    
+  for (let i = 2; i <= deck_1.length + 2; i++){
+  var pri = document.createElement('img');
+  pri.src = deck_1[i].black;
+  pri.src = deck_1[i].white;
+}
+
+  for (let i = 2; i <= deck_2.length + 2; i++){
+  var pri = document.createElement('img');
+  pri.src = deck_2[i].black;
+  pri.src = deck_2[i].white;
+}
+}
 sellect_instruction = 10;
 
 //手札の配列の変更をリストに反映する
