@@ -229,7 +229,7 @@ const character006 = {
   }
 };
 
-window.onload = function(){
+
     
 for (let i; i <= deck_1.length; i++){
   var pri = document.createElement('img');
@@ -247,7 +247,7 @@ for (let i; i <= deck_2.length; i++){
   var pri = document.createElement('img');
   pri.src = deck_2[i].white;
 }
-}
+
 
 
 //デッキの配列(後々、サーバーなどを立てたときにはアカウントのオブジェクトを使う)
