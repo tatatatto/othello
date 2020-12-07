@@ -231,21 +231,36 @@ const character006 = {
 
 
     
+window.onload = function(){
+    
 for (let i; i <= deck_1.length; i++){
-  var pri = document.createElement('img');
-  pri.src = deck_1[i].black;
+var res = document.createElement("link");
+res.rel = "preload";
+res.as = "img";
+res.href = deck_1[i].black;
+document.head.appendChild(res);
 }
 for (let i; i <= deck_2.length; i++){
-  var pri = document.createElement('img');
-  pri.src = deck_2[i].black;
+var res = document.createElement("link");
+res.rel = "preload";
+res.as = "img";
+res.href = deck_1[i].white;
+document.head.appendChild(res);
 }
 for (let i; i <= deck_1.length; i++){
-  var pri = document.createElement('img');
-  pri.src = deck_1[i].white;
+var res = document.createElement("link");
+res.rel = "preload";
+res.as = "img";
+res.href = deck_2[i].black;
+document.head.appendChild(res);
 }
 for (let i; i <= deck_2.length; i++){
-  var pri = document.createElement('img');
-  pri.src = deck_2[i].white;
+  var res = document.createElement("link");
+  res.rel = "preload";
+  res.as = "img";
+  res.href = deck_2[i].white;
+  document.head.appendChild(res);
+}
 }
 
 
