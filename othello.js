@@ -233,19 +233,19 @@ var deck_2 = deck_2_data;
 
 window.onload = function(){
     
-for (let i = 2; i <= deck_1.length + 2; i++){
+for (let i; i <= deck_1.length; i++){
   var pri = document.createElement('img');
   pri.src = deck_1[i].black;
 }
-for (let i = 2; i <= deck_2.length + 2; i++){
+for (let i; i <= deck_2.length; i++){
   var pri = document.createElement('img');
   pri.src = deck_2[i].black;
 }
-for (let i = 2; i <= deck_1.length + 2; i++){
+for (let i; i <= deck_1.length; i++){
   var pri = document.createElement('img');
   pri.src = deck_1[i].white;
 }
-for (let i = 2; i <= deck_2.length + 2; i++){
+for (let i; i <= deck_2.length; i++){
   var pri = document.createElement('img');
   pri.src = deck_2[i].white;
 }
