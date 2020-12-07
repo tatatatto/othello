@@ -230,6 +230,13 @@ const character006 = {
 };
 
 
+//デッキの配列(後々、サーバーなどを立てたときにはアカウントのオブジェクトを使う)
+var deck_1_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
+var deck_2_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
+
+var deck_1 = deck_1_data;
+var deck_2 = deck_2_data;
+
     
 window.onload = function(){
     
@@ -262,15 +269,6 @@ for (let i; i <= deck_2.length; i++){
   document.head.appendChild(res);
 }
 }
-
-
-
-//デッキの配列(後々、サーバーなどを立てたときにはアカウントのオブジェクトを使う)
-var deck_1_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
-var deck_2_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
-
-var deck_1 = deck_1_data;
-var deck_2 = deck_2_data;
 
 sellect_instruction = 10;
 
