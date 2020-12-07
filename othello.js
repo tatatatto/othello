@@ -5,8 +5,13 @@ var turn = 1; // どちらの番か 1:黒、-1:白
 
 var turnCount = 1; // 経過ターン(スタートは1で白、黒それぞれのターンで1ずつ増える)
 
+//hpを表示するエリア
 const hp_1Area = document.getElementById('hp_1');
 const hp_2Area = document.getElementById('hp_2');
+
+//デッキの残り枚数を表示するエリア
+const deck_1_length = document.getElementById('deck1-length');
+const deck_2_length = document.getElementById('deck2-length');
 
 //手札を表示する場所
 const hand1_A = document.getElementById('hand1-1');
@@ -224,13 +229,6 @@ const character006 = {
   }
 };
 
-//デッキの配列(後々、サーバーなどを立てたときにはアカウントのオブジェクトを使う)
-var deck_1_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
-var deck_2_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
-
-var deck_1 = deck_1_data;
-var deck_2 = deck_2_data;
-
 window.onload = function(){
     
 for (let i; i <= deck_1.length; i++){
@@ -250,6 +248,14 @@ for (let i; i <= deck_2.length; i++){
   pri.src = deck_2[i].white;
 }
 }
+
+
+//デッキの配列(後々、サーバーなどを立てたときにはアカウントのオブジェクトを使う)
+var deck_1_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
+var deck_2_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
+
+var deck_1 = deck_1_data;
+var deck_2 = deck_2_data;
 
 sellect_instruction = 10;
 
@@ -313,6 +319,8 @@ if (index > -1) {
       console.log(deck_2);
       break;
   }
+  deck_1_length.innerText = "プレイヤー1の残りデッキ枚数は" + deck_1.length;
+  deck_2_length.innerText = "プレイヤー1の残りデッキ枚数は" + deck_2.length;
 }
 
 draw(deck_1);
@@ -1159,4 +1167,5 @@ function judge(error){
 ban_new();
 // 盤面を初期化する
 ban_init();
+
 
