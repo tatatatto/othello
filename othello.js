@@ -238,8 +238,6 @@ var deck_1 = deck_1_data;
 var deck_2 = deck_2_data;
 
     
-window.onload = function(){
-    
 for (let i; i <= deck_1.length; i++){
 var res = document.createElement("link");
 res.rel = "preload";
@@ -268,7 +266,7 @@ for (let i; i <= deck_2.length; i++){
   res.href = deck_2[i].white;
   document.head.appendChild(res);
 }
-}
+
 
 sellect_instruction = 10;
 
