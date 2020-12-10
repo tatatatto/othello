@@ -161,8 +161,8 @@ const character006 = {
 
 
 //デッキの配列(後々、サーバーなどを立てたときにはアカウントのオブジェクトを使う)
-var deck_1_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
-var deck_2_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
+var deck_1_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006,character002,character002,character003,character003,character004,character004,character005,character005,character006,character006,character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
+var deck_2_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006,character002,character002,character003,character003,character004,character004,character005,character005,character006,character006,character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
 
 var deck_1 = deck_1_data;
 var deck_2 = deck_2_data;
@@ -171,28 +171,28 @@ for (let i = 0; i < deck_1.length; i++){
 var res = document.createElement("img");
 res.src = deck_1[i].black;
 document.head.appendChild(res);
-console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
+console.log("画像ロード");
 console.log(res);
 }
 for (let i = 0; i < deck_1.length; i++){
   var res = document.createElement("img");
   res.src = deck_1[i].white;
   document.head.appendChild(res);
-  console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
+  console.log("画像ロード");
   console.log(res);
 }
 for (let i = 0; i < deck_2.length; i++){
   var res = document.createElement("img");
   res.src = deck_2[i].black;
   document.head.appendChild(res);
-  console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
+  console.log("画像ロード");
   console.log(res);
 }
 for (let i = 0; i < deck_2.length; i++){
   var res = document.createElement("img");
   res.src = deck_2[i].white;
   document.head.appendChild(res);
-  console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
+  console.log("画像ロード");
   console.log(res);
 }
 
