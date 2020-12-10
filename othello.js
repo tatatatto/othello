@@ -174,26 +174,26 @@ document.head.appendChild(res);
 console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
 console.log(res);
 }
-for (let i = 0; i <= deck_2.length; i++){
-var res = document.createElement("link");
-res.rel = "preload";
-res.as = "img";
-res.href = deck_1[i].white;
-document.head.appendChild(res);
-}
-for (let i = 0; i <= deck_1.length; i++){
-var res = document.createElement("link");
-res.rel = "preload";
-res.as = "img";
-res.href = deck_2[i].black;
-document.head.appendChild(res);
-}
-for (let i = 0; i <= deck_2.length; i++){
-  var res = document.createElement("link");
-  res.rel = "preload";
-  res.as = "img";
-  res.href = deck_2[i].white;
+for (let i = 0; i < deck_1.length; i++){
+  var res = document.createElement("img");
+  res.src = deck_1[i].white;
   document.head.appendChild(res);
+  console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
+  console.log(res);
+}
+for (let i = 0; i < deck_2.length; i++){
+  var res = document.createElement("img");
+  res.src = deck_2[i].black;
+  document.head.appendChild(res);
+  console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
+  console.log(res);
+}
+for (let i = 0; i < deck_2.length; i++){
+  var res = document.createElement("img");
+  res.src = deck_2[i].white;
+  document.head.appendChild(res);
+  console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
+  console.log(res);
 }
 
 
