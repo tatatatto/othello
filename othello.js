@@ -167,28 +167,28 @@ var deck_2_data = [character002,character002,character003,character003,character
 var deck_1 = deck_1_data;
 var deck_2 = deck_2_data;
 
-for (let i; i <= deck_1.length; i++){
-var res = document.createElement("link");
-res.rel = "preload";
-res.as = "img";
-res.href = deck_1[i].black;
+for (let i = 0; i < deck_1.length; i++){
+var res = document.createElement("img");
+res.src = deck_1[i].black;
 document.head.appendChild(res);
+console.log("asdgfaethrsyjwteukjyrshtaefgrsy");
+console.log(res);
 }
-for (let i; i <= deck_2.length; i++){
+for (let i = 0; i <= deck_2.length; i++){
 var res = document.createElement("link");
 res.rel = "preload";
 res.as = "img";
 res.href = deck_1[i].white;
 document.head.appendChild(res);
 }
-for (let i; i <= deck_1.length; i++){
+for (let i = 0; i <= deck_1.length; i++){
 var res = document.createElement("link");
 res.rel = "preload";
 res.as = "img";
 res.href = deck_2[i].black;
 document.head.appendChild(res);
 }
-for (let i; i <= deck_2.length; i++){
+for (let i = 0; i <= deck_2.length; i++){
   var res = document.createElement("link");
   res.rel = "preload";
   res.as = "img";
