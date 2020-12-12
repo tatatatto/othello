@@ -33,6 +33,13 @@ const dayAndNight = document.getElementById('day-and-night');
 //そのターンに使ったコマの枚数　1ターンのうちに1度しかカードを使えなくする関数
 var cardCount;
 
+//スキルによる防御　黒が発動した時は1、白が発動した時は2
+var skill_defense_1 = 0;
+var skill_defense_2 = 0;
+
+//蚕が蛾に変化するまでに必要なターンの数（例えば2のときは2ターン目の盤面情報変更、ターン変更の処理において変わる）
+var kaiko_turn = 5;
+
 //キャラクターデータ
 const character002 = {
   name: "蚊",
@@ -53,8 +60,17 @@ const character002 = {
         hp_1 = hp_1 - damage_recovery;
         hp_1 = hp_1 - power;
         break;}
-      hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
-      hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 < 0){
+          hp_1 = 0;
+        }
+        if(hp_2 < 0){
+          hp_2 = 0;
+        }
+        hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+        hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 == 0 || hp_2 == 0){
+          judge();
+        }
   },
   power: 4,
   black: "./img/ka-black.png",
@@ -77,8 +93,17 @@ const character003 = {
         hp_1 = hp_1 - damage;
         hp_1 = hp_1 - power;
         break;}
-      hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
-      hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 < 0){
+          hp_1 = 0;
+        }
+        if(hp_2 < 0){
+          hp_2 = 0;
+        }
+        hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+        hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 == 0 || hp_2 == 0){
+          judge();
+        }
   },
   power: 7,
   black: "./img/kirin-black.png",
@@ -101,8 +126,17 @@ const character004 = {
         hp_2 = hp_2 + recovery;
         hp_1 = hp_1 - power;
         break;}
-      hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
-      hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 < 0){
+          hp_1 = 0;
+        }
+        if(hp_2 < 0){
+          hp_2 = 0;
+        }
+        hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+        hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 == 0 || hp_2 == 0){
+          judge();
+        }
   },
   power: 2,
   black: "./img/u-pa-ru-pa-black.png",
@@ -127,8 +161,17 @@ const character005 = {
         hp_1 = hp_1 + recovery;
         hp_1 = hp_1 - power;
         break;}
-      hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
-      hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 < 0){
+          hp_1 = 0;
+        }
+        if(hp_2 < 0){
+          hp_2 = 0;
+        }
+        hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+        hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 == 0 || hp_2 == 0){
+          judge();
+        }
   },
   power: 4,
   black: "./img/mimizu-black.png",
@@ -151,21 +194,106 @@ const character006 = {
         hp_1 = hp_1 - damage;
         hp_1 = hp_1 - power;
         break;}
-      hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
-      hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 < 0){
+          hp_1 = 0;
+        }
+        if(hp_2 < 0){
+          hp_2 = 0;
+        }
+        hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+        hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 == 0 || hp_2 == 0){
+          judge();
+        }
   },
   power: 5,
   black: "./img/owl-black.png",
   white: "./img/owl-white.png",
 };
+const character007 = {
+  name: "蚕",
+  cardNumber: 7,
+  skill: "defence",
+  skillNumber: 2,
+  comboSkill: "defence",
+  comboNumber: 1,
+  skillFunc: function defense(hp,defence,power){
+    switch(hp){
+      case hp_1:
+        hp_2 = hp_2 - power;
+        skill_defense_1 = defence;
+        break;
+      case hp_2:
+        hp_1 = hp_1 - power;
+        skill_defense_2 = defence;
+        break;}
+        if(hp_1 < 0){
+          hp_1 = 0;
+        }
+        if(hp_2 < 0){
+          hp_2 = 0;
+        }
+        hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+        hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+        if(hp_1 == 0 || hp_2 == 0){
+          judge();
+        }
+  },
+  power: 0,
+  black: "./img/kaiko-black.png",
+  white: "./img/kaiko-white.png",
+};
 
+const character999 = {
+  name: "蛾",
+  cardNumber: 999,
+  skill: "all_damage",
+  skillNumber: 3020,
+  comboSkill: "all_damage",
+  comboNumber: 1005,
+  skillFunc: function all_damage(hp,damage,power){
+    var damage_you = Math.floor(damage / 100);
+    var damage_me = damage % 100;
+    switch(hp){
+      case hp_1:
+        hp_2 = hp_2 - damage_you;
+        hp_2 = hp_2 - power;
+        if(hp_1 > 0){
+          hp_1 = hp_1 - damage_me;
+        }
+        break;
+      case hp_2:
+        hp_1 = hp_1 - damage_you;
+        hp_1 = hp_1 - power;
+        if(hp_2 > 0){
+          hp_2 = hp_2 - damage_me;
+        }
+        break;}
+      if(hp_1 < 0){
+        hp_1 = 0;
+      }
+      if(hp_2 < 0){
+        hp_2 = 0;
+      }
+      hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+      hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+      if(hp_1 == 0 || hp_2 == 0){
+        judge();
+      }
+  },
+  power: 5,
+  black: "./img/ga-black.png",
+  white: "./img/ga-white.png",
+};
 
 //デッキの配列(後々、サーバーなどを立てたときにはアカウントのオブジェクトを使う)
-var deck_1_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006,character002,character002,character003,character003,character004,character004,character005,character005,character006,character006,character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
-var deck_2_data = [character002,character002,character003,character003,character004,character004,character005,character005,character006,character006,character002,character002,character003,character003,character004,character004,character005,character005,character006,character006,character002,character002,character003,character003,character004,character004,character005,character005,character006,character006];
+
+var deck_1_data = [character002,character003,character004,character005,character006,character007,character002,character003,character004,character005,character006,character007];
+var deck_2_data = [character002,character003,character004,character005,character006,character007,character002,character003,character004,character005,character006,character007];
 
 var deck_1 = deck_1_data;
 var deck_2 = deck_2_data;
+
 
 for (let i = 0; i < deck_1.length; i++){
 var res = document.createElement("img");
@@ -227,7 +355,6 @@ function draw(deck_number){
   }
   console.log(quantity);
   for(let i = 0; i < quantity; i++){
-  //console.log(deck_number);
   var random = deck_number[Math.floor(Math.random() * deck_number.length)];
   console.log(random);
   var index = deck_number.indexOf(random);
@@ -395,6 +522,51 @@ function night_damage(hp,damage,power){
     }
 }
 
+function defence(hp,defence,power){
+  switch(hp){
+    case hp_1:
+      hp_2 = hp_2 - power;
+      skill_defense_1 = defence;
+      break;
+    case hp_2:
+      hp_1 = hp_1 - power;
+      skill_defense_2 = defence;
+      break;}
+    hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+    hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+}
+
+function all_damage(hp,damage,power){
+  var damage_you = Math.floor(damage / 100);
+  var damage_me = damage % 100;
+  switch(hp){
+    case hp_1:
+      hp_2 = hp_2 - damage_you;
+      hp_2 = hp_2 - power;
+      if(hp_1 > 0){
+        hp_1 = hp_1 - damage_me;
+      }
+      break;
+    case hp_2:
+      hp_1 = hp_1 - damage_you;
+      hp_1 = hp_1 - power;
+      if(hp_2 > 0){
+        hp_2 = hp_2 - damage_me;
+      }
+      break;}
+    if(hp_1 < 0){
+      hp_1 = 0;
+    }
+    if(hp_2 < 0){
+      hp_2 = 0;
+    }
+    hp_1Area.innerText = "プレイヤー1　残り" + hp_1;
+    hp_2Area.innerText = "プレイヤー2　残り" + hp_2;
+    if(hp_1 == 0 || hp_2 == 0){
+      judge();
+    }
+}
+
 function explain(character){
   var skillName = character.skill;
   var skillExplanation = "";
@@ -410,11 +582,22 @@ function explain(character){
     case "damage":
       skillExplanation = "敵に" + skillNumber +　"のダメージを与える";
       break;
+    case "night_damage":
+      skillExplanation = "夜に限り敵に" + skillNumber +　"のダメージを与える";
+      break;
     case "recover":
       skillExplanation = "自分のHPを" + skillNumber +　"回復する";
       break;
     case "all_recover":
       skillExplanation = "互いのHPを" + skillNumber +　"回復する";
+      break;
+    case "defence":
+      skillExplanation = "次のターンの相手に与えられるダメージを" + comboNumber +　"減らす";
+      break;
+    case "all_damage":
+        var skillNumber_me = character.comboNumber % 100;
+        var skillNumber_you = Math.floor(character.comboNumber / 100);
+        skillExplanation = "敵に" + skillNumber_me +　"の、自分に" + skillNumber_you + "のダメージを与える";
       break;
   }
   switch(comboName){
@@ -424,11 +607,22 @@ function explain(character){
     case "damage":
       comboExplanation = "敵に" + comboNumber +　"のダメージを与える";
       break;
+    case "night_damage":
+      comboExplanation = "夜に限り敵に" + comboNumber +　"のダメージを与える";
+      break;
     case "recover":
       comboExplanation = "自分のHPを" + comboNumber +　"回復する";
       break;
     case "all_recover":
       comboExplanation = "互いのHPを" + comboNumber +　"回復する";
+      break;
+    case "defence":
+      comboExplanation = "次のターンの相手に与えられるダメージを" + comboNumber +　"減らす";
+      break;
+    case "all_damage":
+      var comboNumber_me = character.comboNumber % 100;
+      var comboNumber_you = Math.floor(character.comboNumber / 100);
+      comboExplanation = "敵に" + comboNumber_me +　"の、自分に" + comboNumber_you + "のダメージを与える";
       break;
   }
   var explaination = character.name + "　攻撃力" + powerNumber + "　スキル：" + skillExplanation + "　コンボスキル：" + comboExplanation;
@@ -623,6 +817,17 @@ function sellect_on(skillName,hp,skillNumber,power,characterNumber){
     for (var y = 0; y < 6; y++) {
     var sellect_cell = ban.rows[x].cells[y];
     sellect_cell.onclick = function(){
+      console.log(ban_ar[this.parentNode.rowIndex][this.cellIndex]);
+      if(Math.abs(ban_ar[this.parentNode.rowIndex][this.cellIndex]) > 1){
+        if(Math.abs(ban_ar[this.parentNode.rowIndex][this.cellIndex])>99){
+          var zero = "";
+        }else if(Math.abs(ban_ar[this.parentNode.rowIndex][this.cellIndex])>9){
+          var zero = "0";
+        }else if(Math.abs(ban_ar[this.parentNode.rowIndex][this.cellIndex])>0){
+          var zero = "00";
+        }
+        Function('console.log(explain(character' + zero + Math.abs(ban_ar[this.parentNode.rowIndex][this.cellIndex]) + '));')();
+      }
     if(sellect_instruction == 1){
     console.log(sellect_instruction);
     // クリックされた場所に石がない場合は、その場所にターン側の石が置けるかチェックし
@@ -633,8 +838,28 @@ function sellect_on(skillName,hp,skillNumber,power,characterNumber){
     console.log(this.parentNode.rowIndex);
     //x軸
     console.log(this.cellIndex);
+
+    //ダメージ軽減形のスキル関連の処理
+    if(skill_defense_1 > 0 && turn == -1){
+      //黒が発動していたときに白のターンでカードのパワーを減らす
+      var powerDamage = power - skill_defense_1;
+      //黒のダメージ軽減形のスキルをリセット
+      skill_defense_1 = 0;
+    }else if(skill_defense_2 > 0 && turn == 1){
+      //黒が発動していたときに白のターンでカードのパワーを減らす
+      var powerDamage = power - skill_defense_2;
+      //白のダメージ軽減形をリセット
+      skill_defense_2 = 0;
+    }else{
+      var powerDamage = power;
+    }
+
+    if(powerDamage < 0){
+      powerDamage = 0;
+    }
+
     //スキル発動となんのスキルをどの数値で発動したのかのログを残す
-    Function(skillName + "(" + hp + "," + skillNumber + "," + power + ");")();
+    Function(skillName + "(" + hp + "," + skillNumber + "," + powerDamage + ");")();
     console.log(skillName + "　" + skillNumber);
     //二次元配列にしたがって画像を変更し、盤面に反映
     ban_set();
@@ -642,6 +867,8 @@ function sellect_on(skillName,hp,skillNumber,power,characterNumber){
     cheng_turn();}}}}}
   }
 }
+
+
 
 
 // 盤面の状況を二次元配列で定義
@@ -677,9 +904,15 @@ function ban_set(){
   case 1:
   ban.rows[x].cells[y].firstChild.src = "./img/black.png";
   break;
-  //0何もない、1普通の黒のコマ、-1普通の白のコマではないとき　＝＞　キャラカードの時　
+  //0何もない、1普通の黒のコマ、-1普通の白のコマではないとき　＝＞　キャラカードの時
+  //7は蚕で特定の数のターンを経過したら蛾に変換する
   default:
-  
+  if(turnCount == kaiko_turn - 1){
+  if(Math.abs(ban_ar[x][y]) == 7){
+    console.log(ban_ar[x][y]);
+    ban_ar[x][y] = ban_ar[x][y] * 999 / 7;
+    console.log(ban_ar[x][y]);
+  }}
   //そのコマの番号の符号からどちらの色かを判定する
   if(ban_ar[x][y] > 1){
     var player = "black";
@@ -724,6 +957,37 @@ function cheng_turn () {
 
   //経過ターン数を計算
   turnCount = turnCount + 1;
+
+if(turnCount == kaiko_turn){
+
+  var deck_1_007 = deck_1.indexOf(character007);
+  var deck_2_007 = deck_2.indexOf(character007);
+  var hand_1_007 = hand_1.indexOf(character007);
+  var hand_2_007 = hand_2.indexOf(character007);
+  
+  while(deck_1_007 >= 0){
+    deck_1.splice(deck_1_007,1,character999);
+    deck_1_007 = deck_1.indexOf(character007);
+    console.log(deck_1);
+  };
+  while(deck_2_007 >= 0){
+    deck_2.splice(deck_2_007,1,character999);
+    deck_2_007 = deck_2.indexOf(character007);
+    console.log(deck_2);
+  };
+  while(hand_1_007 >= 0){
+    hand_1.splice(hand_1_007,1,character999);
+    hand_1_007 = hand_1.indexOf(character007);
+  console.log(hand_1);
+  };
+  while(hand_2_007 >= 0){
+    hand_2.splice(hand_2_007,1,character999);
+    hand_2_007 = hand_2.indexOf(character007);
+    console.log(hand_2);
+  };
+  piese_set1();
+  piese_set2();
+}
 
   dayNight = Math.round(turnCount/2) % 2;
   if(dayNight == 0){
@@ -1055,8 +1319,8 @@ ban_ar[3][3] = -1
 ban_set();
 
 // ターンも初期化
-turn = 0
-cheng_turn()
+turn = 0;
+cheng_turn();
 }
 
 function judge(error){
