@@ -1,0 +1,103 @@
+td{
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  background-color: green;
+  text-align : center;
+}
+
+body{
+  margin: 0 auto;
+}
+
+.div{
+  margin-left: 1vw;
+  position: absolute;
+  z-index: 1;
+}
+
+.piece{
+  width: 40px;
+  height: 40px;
+}
+
+.dolphin{
+  position: absolute;
+  z-index: 9;
+  width: 20vw;
+  animation: jump 18s;
+}
+
+
+.sea1{
+  z-index: 8;
+  margin-top: 23vw;
+  position: absolute;
+  width: 100vw;
+  animation: sea1-down 18s;
+}
+.sea2{
+  z-index: 6;
+  margin-top: 15vw;
+  position: absolute;
+  width: 100vw;
+  animation: sea2-down 18s;
+}
+.sea3{
+  z-index: 4;
+  margin-top: 3vw;
+  position: absolute;
+  width: 100vw;
+  animation: sea3-down 18s;
+}
+.sea4{
+  z-index: 2;
+  margin-top: 1vw;
+  position: absolute;
+  width: 100vw;
+  animation: sea4-down 18s;
+}
+
+@keyframes jump{
+  0%{opacity: 0;}
+ 34%{margin:0vw 80vw;transform: rotate(-15deg);z-index: 7;opacity: 0;}
+ 35%{margin:0vw 80vw;transform: rotate(-15deg);z-index: 7;opacity: 1;}
+ 45%{margin:37vw 60vw;transform: rotate(-40deg);z-index: 7;}
+ 50%{margin:37vw 60vw;transform: rotate(30deg);z-index: 5;}
+ 60%{margin:0vw 30vw;z-index: 5;}
+ 70%{margin:37vw 0vw;transform: rotate(-40deg);z-index: 7;opacity: 1;}
+ 71%{margin:37vw 0vw;opacity: 0;}
+100%{margin:100vw 0vw;opacity: 0;}
+}
+
+@keyframes sea1-down{
+  0%{margin-top: -77vw;}
+  7%{margin-top: 23vw;}
+ 71%{margin-top: 23vw;}
+100%{margin-top: 100vw;}
+}
+
+@keyframes sea2-down{
+  0%{margin-top: -85vw;}
+  9%{margin-top: -85vw;}
+ 16%{margin-top: 15vw;}
+ 71%{margin-top: 15vw;}
+100%{margin-top: 100vw;}
+}
+
+@keyframes sea3-down{
+  0%{margin-top: -97vw;}
+ 18%{margin-top: -97vw;}
+ 25%{margin-top: 3vw;}
+ 71%{margin-top: 3vw;}
+100%{margin-top: 100vw;}
+}
+
+@keyframes sea4-down{
+  0%{margin-top: -99vw;}
+ 27%{margin-top: -99vw;}
+ 34%{margin-top: 1vw;}
+ 71%{margin-top: 1vw;}
+100%{margin-top: 100vw;}
+}
